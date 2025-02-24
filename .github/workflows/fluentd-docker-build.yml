@@ -32,8 +32,6 @@ jobs:
           provenance: false
           push: true
           platforms: linux/arm64
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
           tags: ${{ env.DOCKER_REGISTRY }}/fluentd:v1.15.3-debian-arm64-1.2
           # dare to use old mediatype (application/vnd.docker.distribution.manifest.v2+json)
           outputs: oci-mediatypes=false
