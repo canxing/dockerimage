@@ -55,5 +55,7 @@ COPY entrypoint.sh /fluentd/entrypoint.sh
 ENV FLUENTD_OPT=""
 ENV FLUENTD_CONF="fluent.conf"
 
+RUN chmod +x /bin/entrypoint.sh
+
 # Overwrite ENTRYPOINT to run fluentd as root for /var/log / /var/lib
 ENTRYPOINT ["tini", "--", "/fluentd/entrypoint.sh"]
