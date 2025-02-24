@@ -3,7 +3,7 @@ name: Build Fluentd Kubernetes Damonset Image
 on:
   push:
     paths:
-      - '/fluentd-es/kubernetes/arm64/debian-elasticsearch7/**'
+      - 'fluentd-es/kubernetes/arm64/debian-elasticsearch7/**'
 
 env:
   DOCKER_REGISTRY: docker.io/liuxincuit/fluentd-kubernetes-daemonset

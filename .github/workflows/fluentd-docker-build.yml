@@ -3,7 +3,7 @@ name: Build Fluentd Image
 on:
   push:
     paths:
-      - '/fluentd-es/fluentd/arm64/debian/**'
+      - 'fluentd-es/fluentd/arm64/debian/**'
 
 concurrency:
   group: ${{ github.head_ref || github.sha }}-${{ github.workflow }}
