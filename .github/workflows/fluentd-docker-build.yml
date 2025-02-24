@@ -31,6 +31,8 @@ jobs:
           context: ./fluentd-es/fluentd/arm64/debian/
           provenance: false
           push: true
+          pull: true
+          no-cache: true
           platforms: linux/arm64
           tags: ${{ env.DOCKER_REGISTRY }}/fluentd:v1.15.3-debian-arm64-1.2
           # dare to use old mediatype (application/vnd.docker.distribution.manifest.v2+json)
