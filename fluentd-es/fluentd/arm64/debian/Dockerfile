@@ -18,8 +18,10 @@ RUN [ ${CROSS_BUILD_START} ]
 ENV TINI_VERSION=0.18.0
 
 # 指定编译的 page size 为 64k
-ENV CONFIGURE_ARGS="--with-cflags='-DPAGE_SIZE=65536'"
+# ENV CONFIGURE_ARGS="--with-cflags='-DPAGE_SIZE=65536'"
 
+# 禁用 jemalloc
+ENV USE_JEMALLOC no
 
 # Do not split this into multiple RUN!
 # Docker creates a layer for every RUN-Statement
@@ -48,10 +50,6 @@ RUN apt-get update \
  && rm -r /usr/local/bin/tini.asc \
  && chmod +x /usr/local/bin/tini \
  && tini -h \
- && wget -O /tmp/jemalloc-5.3.0.tar.bz2 https://github.com/jemalloc/jemalloc/releases/download/5.3.0/jemalloc-5.3.0.tar.bz2 \
- && cd /tmp && tar -xjf jemalloc-5.3.0.tar.bz2 && cd jemalloc-5.3.0/ \
- && ./configure && make \
- && mv lib/libjemalloc.so.2 /usr/lib \
  && apt-get purge -y --auto-remove \
                   -o APT::AutoRemove::RecommendsImportant=false \
                   $buildDeps \
@@ -72,7 +70,7 @@ COPY entrypoint.sh /bin/
 
 ENV FLUENTD_CONF="fluent.conf"
 
-ENV LD_PRELOAD="/usr/lib/libjemalloc.so.2"
+# ENV LD_PRELOAD="/usr/lib/libjemalloc.so.2"
 EXPOSE 24224 5140
 
 USER fluent

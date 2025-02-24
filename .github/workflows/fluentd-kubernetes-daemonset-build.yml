@@ -4,6 +4,10 @@ on:
   push:
     paths:
       - 'fluentd-es/kubernetes/arm64/debian-elasticsearch7/**'
+  workflow_run:
+    workflows: ["Build Fluentd Image"]
+    types:
+      - completed
 
 env:
   DOCKER_REGISTRY: docker.io/liuxincuit/fluentd-kubernetes-daemonset
