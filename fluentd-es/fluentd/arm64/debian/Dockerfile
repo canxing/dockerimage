@@ -17,6 +17,9 @@ ARG CROSS_BUILD_END="cross-build-end"
 RUN [ ${CROSS_BUILD_START} ]
 ENV TINI_VERSION=0.18.0
 
+# 指定编译的 page size 为 64k
+ENV CONFIGURE_ARGS="--with-cflags='-DPAGE_SIZE=65536'"
+
 # Do not split this into multiple RUN!
 # Docker creates a layer for every RUN-Statement
 # therefore an 'apt-get purge' has no effect
